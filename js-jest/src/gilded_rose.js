@@ -18,7 +18,7 @@ class Shop {
         this.incrementQualityOfExtraordinaryItems(i);
       }
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        this.decrementSellInOfNonLegendaryItems(i);
       }
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != 'Aged Brie') {
@@ -64,6 +64,10 @@ class Shop {
         }
       }
     }
+  }
+
+  decrementSellInOfNonLegendaryItems(i) {
+    this.items[i].sellIn = this.items[i].sellIn - 1;
   }
 }
 
