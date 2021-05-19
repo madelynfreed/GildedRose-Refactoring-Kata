@@ -85,11 +85,17 @@ describe("Gilded Rose", function() {
         quality: 15,
         sellIn: 2,
       },
+      {
+        name: "Backstage passes to a TAFKAL80ETC concert",
+        quality: 0,
+        sellIn: -3,
+      },
     ];
 
     const items = [
       new Item("Backstage passes to a TAFKAL80ETC concert", 10, 9),
       new Item("Backstage passes to a TAFKAL80ETC concert", 4, 9),
+      new Item("Backstage passes to a TAFKAL80ETC concert", -1, 9),
     ];
 
     const days = 2;
@@ -103,17 +109,38 @@ describe("Gilded Rose", function() {
   });
 
   it("all other random items", function() {
-    
     const expected = [
       {
         name: "made up object",
-        quality: 0,
+        quality: 8,
         sellIn: -2,
       },
     ];
 
     const items = [
-      new Item("made up object", -1, 1),
+      new Item("made up object", -1, 10),
+    ];
+
+    const days = 1;
+    const gildedRose = new Shop(items);
+
+    for (let day = 0; day < days; day++) {
+      gildedRose.updateQuality();
+    }
+
+    expect(gildedRose.items).toEqual(expected)
+  });
+  it("tests aged brie", function() {
+    const expected = [
+      {
+        name: "Aged Brie",
+        quality: 12,
+        sellIn: -2,
+      },
+    ];
+
+    const items = [
+      new Item("Aged Brie", -1, 10),
     ];
 
     const days = 1;
