@@ -72,4 +72,57 @@ describe("Gilded Rose", function() {
 
     expect(gildedRose.items).toEqual(expected)
   });
+  it("covers backstage passes", function() {
+    
+    const expected = [
+      {
+        name: "Backstage passes to a TAFKAL80ETC concert",
+        quality: 13,
+        sellIn: 8,
+      },
+      {
+        name: "Backstage passes to a TAFKAL80ETC concert",
+        quality: 15,
+        sellIn: 2,
+      },
+    ];
+
+    const items = [
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 9),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 4, 9),
+    ];
+
+    const days = 2;
+    const gildedRose = new Shop(items);
+
+    for (let day = 0; day < days; day++) {
+      gildedRose.updateQuality();
+    }
+
+    expect(gildedRose.items).toEqual(expected)
+  });
+
+  it("all other random items", function() {
+    
+    const expected = [
+      {
+        name: "made up object",
+        quality: 0,
+        sellIn: -2,
+      },
+    ];
+
+    const items = [
+      new Item("made up object", -1, 1),
+    ];
+
+    const days = 1;
+    const gildedRose = new Shop(items);
+
+    for (let day = 0; day < days; day++) {
+      gildedRose.updateQuality();
+    }
+
+    expect(gildedRose.items).toEqual(expected)
+  });
 });
