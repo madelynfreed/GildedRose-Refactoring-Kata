@@ -6,14 +6,31 @@ class Item {
   }
 }
 
+class BetterItem {
+  constructor(item){
+    this.item = item;
+  }
+  updateItemSellIn() {
+    if (this.item.name != 'Sulfuras, Hand of Ragnaros') {
+      this.decrementSellInOfNonLegendaryItems();
+    }
+
+  }
+  decrementSellInOfNonLegendaryItems() {
+    this.item.sellIn = this.item.sellIn - 1;
+  }
+}
+
 class Shop {
   constructor(items=[]){
     this.items = items;
   }
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      this.updateItemQuality(i)
-      this.updateItemSellIn(i)
+      const betterItem = new BetterItem(this.items[i])
+
+      this.updateItemQuality(i);
+      betterItem.updateItemSellIn();
     }
 
     return this.items;
