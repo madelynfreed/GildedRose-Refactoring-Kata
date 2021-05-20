@@ -14,7 +14,6 @@ class BetterItem {
     if (this.item.name != 'Sulfuras, Hand of Ragnaros') {
       this.decrementSellInOfNonLegendaryItems();
     }
-
   }
   decrementSellInOfNonLegendaryItems() {
     this.item.sellIn = this.item.sellIn - 1;
@@ -60,10 +59,6 @@ class Shop {
     }
   }
 
-  decrementSellInOfNonLegendaryItems(i) {
-    this.items[i].sellIn = this.items[i].sellIn - 1;
-  }
-
   updateQualityOfExpiredItems(i) {
     if (this.items[i].name != 'Aged Brie') {
       if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -79,12 +74,6 @@ class Shop {
       if (this.items[i].quality < 50) {
         this.items[i].quality = this.items[i].quality + 1;
       }
-    }
-  }
-
-  updateItemSellIn(i) {
-    if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-      this.decrementSellInOfNonLegendaryItems(i);
     }
   }
 
